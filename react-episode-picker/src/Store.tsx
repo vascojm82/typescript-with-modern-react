@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import { IAction, IEpisode, IState } from "./interfaces";
+import { IState } from "./interfaces";
 
 let initialState:IState = {
   episodes: [],
@@ -21,8 +21,8 @@ let reducer = (state: IState, action): IState => {
     }
 }
 
-export let StoreProvider = (props: any): JSX.Element => {
+export let StoreProvider = ({ children }: JSX.ElementChildrenAttribute): JSX.Element => {
     let [state, dispatch] = useReducer(reducer, initialState);
 
-    return <Store.Provider value={{state, dispatch}}>{props.children}</Store.Provider>;
+    return <Store.Provider value={{state, dispatch}}>{children}</Store.Provider>;
 }
